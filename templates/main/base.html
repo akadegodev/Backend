@@ -1,18 +1,48 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Restaurante</title>
-    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
-    {% block extra_head %}
-    {% endblock %}
+    <title>{% block title %}Diego's Burger{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'css/custom_burger.css' %}">
+    <style>
+        :root {
+            --primary-color: #d32f2f;
+            --secondary-color: #ffc107;
+            --accent-color: #ff9800;
+            --dark-bg: #1a1a1a;
+            --light-text: #ffffff;
+        }
+        body {
+            background-color: var(--dark-bg);
+            color: var(--light-text);
+        }
+    </style>
+    {% block extra_css %}{% endblock %}
 </head>
 <body>
-    {% block content %}
-    {% endblock %}
-    
-    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg" style="background-color: var(--primary-color);">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/" style="color: var(--secondary-color); font-weight: bold; font-size: 1.5rem;">
+                🍔 Diego's Burger
+            </a>
+        </div>
+    </nav>
+
+    <!-- Contenido -->
+    <main class="container my-5">
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- Footer -->
+    <footer style="background-color: var(--primary-color); padding: 30px; text-align: center; margin-top: 50px;">
+        <p>&copy; 2025 Diego's Burger. Todos los derechos reservados.</p>
+    </footer>
+
+    <script src="{% static 'js/bootstrap.bundle.js' %}"></script>
+    {% block extra_js %}{% endblock %}
 </body>
 </html>

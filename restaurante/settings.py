@@ -158,3 +158,5 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.SessionAuthentication',
     ]
 }
+
+SITE_NAME = "Diego's Burger"

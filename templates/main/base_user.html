@@ -4,8 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Dashboard - Pizza Moderna{% endblock %}</title>
-    <meta name="description" content="{% block description %}Panel de usuario - Pizza Moderna{% endblock %}">
+    <title>{% block title %}Dashboard - Diego's Burger{% endblock %}</title>
+    <meta name="description" content="{% block description %}Panel de usuario - Diego's Burger{% endblock %}">
 
     <!-- Favicons -->
     <link rel="icon" type="image/x-icon" href="{% static 'images/favicon.ico' %}">
@@ -25,15 +25,19 @@
         :root {
             --sidebar-width: 280px;
             --sidebar-collapsed-width: 70px;
-            --primary-color: #ffc107;
-            --primary-dark: #e0a800;
-            --sidebar-bg: #212529;
-            --sidebar-hover: #495057;
+            --primary-blue: #1e40af;
+            --primary-red: #dc2626;
+            --primary-yellow: #fbbf24;
+            --light-bg: #f3f4f6;
+            --sidebar-bg: #f0f4f8;
+            --sidebar-hover: #e0e7ff;
+            --text-dark: #1f2937;
         }
 
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #f8f9fa;
+            background-color: var(--light-bg);
+            color: var(--text-dark);
         }
 
         /* Sidebar Styles */
@@ -43,11 +47,12 @@
             top: 0;
             height: 100vh;
             width: var(--sidebar-width);
-            background: var(--sidebar-bg);
+            background: linear-gradient(135deg, var(--sidebar-bg) 0%, #ffffff 100%);
             transition: all 0.3s ease;
             z-index: 1000;
             overflow-y: auto;
-            box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+            box-shadow: 4px 0 15px rgba(30, 64, 175, 0.1);
+            border-right: 3px solid var(--primary-blue);
         }
 
         .sidebar.collapsed {
@@ -56,24 +61,26 @@
 
         .sidebar-header {
             padding: 1.5rem 1rem;
-            border-bottom: 1px solid #495057;
+            border-bottom: 2px solid var(--primary-yellow);
             display: flex;
             align-items: center;
             gap: 12px;
+            background: linear-gradient(135deg, var(--primary-blue) 0%, #1e3a8a 100%);
         }
 
         .sidebar-header .logo {
-            width: 40px;
-            height: 40px;
-            background: var(--primary-color);
-            border-radius: 10px;
+            width: 50px;
+            height: 50px;
+            background: white;
+            border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #000;
+            color: var(--primary-red);
             font-weight: bold;
-            font-size: 1.2rem;
+            font-size: 1.8rem;
             flex-shrink: 0;
+            box-shadow: 0 4px 10px rgba(220, 38, 38, 0.2);
         }
 
         .sidebar-header .brand {
@@ -82,6 +89,7 @@
             font-size: 1.2rem;
             white-space: nowrap;
             transition: opacity 0.3s ease;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
         }
 
         .sidebar.collapsed .brand {
@@ -94,39 +102,44 @@
         }
 
         .menu-item {
-            margin: 0.2rem 0.5rem;
+            margin: 0.3rem 0.7rem;
         }
 
         .menu-link {
             display: flex;
             align-items: center;
-            padding: 0.8rem 1rem;
-            color: #adb5bd;
+            padding: 0.9rem 1rem;
+            color: var(--text-dark);
             text-decoration: none;
-            border-radius: 8px;
+            border-radius: 10px;
             transition: all 0.2s ease;
             gap: 12px;
             position: relative;
             font-weight: 500;
+            border-left: 4px solid transparent;
         }
 
         .menu-link:hover {
             background-color: var(--sidebar-hover);
-            color: var(--primary-color);
-            transform: translateX(4px);
+            color: var(--primary-blue);
+            border-left-color: var(--primary-yellow);
+            transform: translateX(6px);
+            box-shadow: 0 2px 8px rgba(30, 64, 175, 0.15);
         }
 
         .menu-link.active {
-            background-color: var(--primary-color);
-            color: #000;
+            background: linear-gradient(135deg, var(--primary-blue) 0%, #1e3a8a 100%);
+            color: white;
             font-weight: 600;
+            border-left-color: var(--primary-yellow);
+            box-shadow: 0 4px 12px rgba(30, 64, 175, 0.3);
         }
 
         .menu-link i {
-            width: 20px;
+            width: 22px;
             text-align: center;
             flex-shrink: 0;
-            font-size: 1.1rem;
+            font-size: 1.2rem;
         }
 
         .menu-text {
@@ -140,18 +153,18 @@
         }
 
         .menu-divider {
-            height: 1px;
-            background: #495057;
-            margin: 1rem 0.5rem;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--primary-yellow), transparent);
+            margin: 1.2rem 0.7rem;
         }
 
         .menu-label {
-            color: #6c757d;
+            color: var(--primary-red);
             font-size: 0.75rem;
-            font-weight: 600;
+            font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
-            padding: 0.5rem 1rem;
+            letter-spacing: 1px;
+            padding: 0.8rem 1rem;
             margin-top: 1rem;
             transition: opacity 0.3s ease;
         }
@@ -173,31 +186,34 @@
 
         /* Top Bar */
         .top-bar {
-            background: white;
+            background: linear-gradient(135deg, white 0%, var(--light-bg) 100%);
             padding: 1rem 2rem;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 15px rgba(30, 64, 175, 0.1);
             display: flex;
             align-items: center;
             justify-content: space-between;
             position: sticky;
             top: 0;
             z-index: 100;
+            border-bottom: 3px solid var(--primary-yellow);
         }
 
         .sidebar-toggle {
-            background: none;
+            background: linear-gradient(135deg, var(--primary-blue) 0%, #1e3a8a 100%);
             border: none;
             font-size: 1.2rem;
-            color: #495057;
+            color: white;
             cursor: pointer;
-            padding: 0.5rem;
-            border-radius: 6px;
+            padding: 0.6rem 0.8rem;
+            border-radius: 8px;
             transition: all 0.2s ease;
+            box-shadow: 0 2px 8px rgba(30, 64, 175, 0.2);
         }
 
         .sidebar-toggle:hover {
-            background: var(--primary-color);
-            color: #000;
+            background: linear-gradient(135deg, var(--primary-red) 0%, #b91c1c 100%);
+            transform: scale(1.05);
+            box-shadow: 0 4px 12px rgba(220, 38, 38, 0.3);
         }
 
         .user-menu {
@@ -207,15 +223,18 @@
         }
 
         .user-avatar {
-            width: 40px;
-            height: 40px;
-            background: var(--primary-color);
+            width: 45px;
+            height: 45px;
+            background: linear-gradient(135deg, var(--primary-red) 0%, var(--primary-yellow) 100%);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #000;
-            font-weight: 600;
+            color: white;
+            font-weight: 700;
+            font-size: 1.1rem;
+            box-shadow: 0 4px 10px rgba(220, 38, 38, 0.2);
+            border: 2px solid var(--primary-blue);
         }
 
         /* Content Area */
@@ -243,7 +262,7 @@
                 left: 0;
                 width: 100vw;
                 height: 100vh;
-                background: rgba(0,0,0,0.5);
+                background: rgba(0, 0, 0, 0.5);
                 z-index: 999;
                 display: none;
             }
@@ -255,19 +274,27 @@
 
         /* Badge styles */
         .menu-badge {
-            background: var(--primary-color);
-            color: #000;
+            background: linear-gradient(135deg, var(--primary-red) 0%, var(--primary-yellow) 100%);
+            color: white;
             font-size: 0.7rem;
-            padding: 2px 6px;
-            border-radius: 10px;
+            padding: 3px 8px;
+            border-radius: 12px;
             margin-left: auto;
-            font-weight: 600;
+            font-weight: 700;
+            box-shadow: 0 2px 6px rgba(220, 38, 38, 0.2);
         }
 
         /* Tooltip for collapsed sidebar */
         .tooltip {
-            --bs-tooltip-bg: var(--sidebar-bg);
+            --bs-tooltip-bg: var(--primary-blue);
             --bs-tooltip-color: white;
+        }
+
+        /* Page Title Styling */
+        .top-bar h1 {
+            color: var(--primary-blue);
+            font-weight: 700;
+            text-shadow: 1px 1px 2px rgba(30, 64, 175, 0.1);
         }
     </style>
 
@@ -279,15 +306,15 @@
         <!-- Sidebar Header -->
         <div class="sidebar-header">
             <div class="logo">
-                <i class="bi bi-shop"></i>
+                🍔
             </div>
-            <span class="brand">Pizza Moderna</span>
+            <span class="brand">Diego's Burger</span>
         </div>
 
         <!-- Sidebar Menu -->
         <div class="sidebar-menu">
             <!-- Dashboard Section -->
-            <div class="menu-label">Dashboard</div>
+            <div class="menu-label">📊 Dashboard</div>
             
             <div class="menu-item">
                 <a href="{% url 'main_index' %}" class="menu-link {% if request.resolver_match.url_name == 'main_index' %}active{% endif %}">
@@ -306,7 +333,7 @@
             <div class="menu-divider"></div>
 
             <!-- Gestión Section -->
-            <div class="menu-label">Gestión</div>
+            <div class="menu-label">⚙️ Gestión</div>
             
             <div class="menu-item">
                 <a href="{% url 'platillos:categoria_list' %}" class="menu-link {% if 'categoria' in request.resolver_match.url_name %}active{% endif %}">
@@ -355,7 +382,7 @@
             <div class="menu-divider"></div>
 
             <!-- Acciones Section -->
-            <div class="menu-label">Acciones Rápidas</div>
+            <div class="menu-label">⚡ Acciones Rápidas</div>
             
             <div class="menu-item">
                 <a href="{% url 'platillos:categoria_create' %}" class="menu-link">
@@ -374,7 +401,7 @@
             <div class="menu-divider"></div>
 
             <!-- Sistema Section -->
-            <div class="menu-label">Sistema</div>
+            <div class="menu-label">🌐 Sistema</div>
             
             <div class="menu-item">
                 <a href="{% url 'main_index' %}" class="menu-link" target="_blank">
@@ -396,7 +423,7 @@
 
             <!-- User Section -->
             <div class="menu-item">
-                <a href="{% url 'accounts:logout' %}" class="menu-link">
+                <a href="{% url 'accounts:logout' %}" class="menu-link" style="color: var(--primary-red);">
                     <i class="bi bi-box-arrow-right"></i>
                     <span class="menu-text">Cerrar Sesión</span>
                 </a>
@@ -424,7 +451,7 @@
                     {% if user.first_name %}{{ user.first_name.0|upper }}{% elif user.username %}{{ user.username.0|upper }}{% else %}U{% endif %}
                 </div>
                 <div class="d-none d-md-block">
-                    <div class="fw-semibold">{{ user.first_name|default:user.username }}</div>
+                    <div class="fw-semibold" style="color: var(--primary-blue);">{{ user.first_name|default:user.username }}</div>
                     <div class="text-muted small">Administrador</div>
                 </div>
             </div>
@@ -434,7 +461,7 @@
         <div class="content-area">
             {% block content %}
             <div class="text-center py-5">
-                <h2>Contenido del Dashboard</h2>
+                <h2 style="color: var(--primary-blue);">Contenido del Dashboard</h2>
                 <p class="text-muted">Este es el contenido principal de la página</p>
             </div>
             {% endblock %}
